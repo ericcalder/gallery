@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+  <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!--
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+-->
+    <style>
+        body{margin-top:20px;
+    background:#eee;
+}
+h3 {
+    font-size: 16px;
+}
+.text-navy {
+    color: #1a86b3;
+}
+.cart-product-imitation {
+  text-align: center;
+  padding-top: 5px;
+  height: 80px;
+  width: 80px;
+  background-color: #e6fff2;
+}
+.product-imitation.xl {
+  padding: 120px 0;
+}
+.product-desc {
+  padding: 20px;
+  position: relative;
+}
+.ecommerce .tag-list {
+  padding: 0;
+}
+.ecommerce .fa-star {
+  color: #d1dade;
+}
+.ecommerce .fa-star.active {
+  color: #f8ac59;
+}
+.ecommerce .note-editor {
+  border: 1px solid #e7eaec;
+}
+table.shoping-cart-table {
+  margin-bottom: 0;
+}
+table.shoping-cart-table tr td {
+  border: none;
+  text-align: right;
+}
+table.shoping-cart-table tr td.desc,
+table.shoping-cart-table tr td:first-child {
+  text-align: left;
+}
+table.shoping-cart-table tr td:last-child {
+  width: 80px;
+}
+.ibox {
+  clear: both;
+  margin-bottom: 25px;
+  margin-top: 0;
+  padding: 0;
+}
+.ibox.collapsed .ibox-content {
+  display: none;
+}
+.ibox:after,
+.ibox:before {
+  display: table;
+}
+.ibox-title {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background-color: #ffffff;
+  border-color: #e7eaec;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 3px 0 0;
+  color: inherit;
+  margin-bottom: 0;
+  padding: 14px 15px 7px;
+  min-height: 48px;
+}
+.ibox-content {
+  background-color: #ffffff;
+  color: inherit;
+  padding: 15px 20px 20px 20px;
+  border-color: #e7eaec;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 1px 0;
+}
+.ibox-footer {
+  color: inherit;
+  border-top: 1px solid #e7eaec;
+  font-size: 90%;
+  background: #ffffff;
+  padding: 10px 15px;
+}
+    </style>
+
+</head>
+<body>
+
+    <h3>Shop Cart</h3>
+<div class="container">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+
+        <div class="col-md-9">
+
+            <div class="ibox">
+                <div class="ibox-title">
+                    <span class="pull-right">(<strong><!--items.length see js --></strong>) items</span>
+                    <h5>Items in your cart</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table shoping-cart-table">
+                            <tbody>
+                                
+                            <!-- item appended here see js -->
+                             
+                             <tr>
+                                <td width="90">
+                                    <div class="cart-product-imitation">
+                                    </div>
+                                </td>
+                                <td class="desc">
+                                    <h3>
+                                        <a href="#" class="text-navy">
+                                            CRM software
+                                        </a>
+                                    </h3>
+                                    <p class="small">
+                                        Distracted by the readable
+                                        content of a page when looking at its layout. The point of using Lorem Ipsum is
+                                    </p>
+                                    <dl class="small m-b-none">
+                                        <dt>Description lists</dt>
+                                        <dd>A description list is perfect for defining terms.</dd>
+                                    </dl>
+
+                                    <div class="m-t-sm">
+                                        <a href="#" class="text-muted"><i class="fa fa-gift"></i> Add gift package</a>
+                                        |
+                                        <a href="#" class="text-muted"><i class="fa fa-trash"></i> Remove item</a>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    $110,00
+                                </td>
+                                <td width="65">
+                                    <input type="text" class="form-control" placeholder="1">
+                                </td>
+                                <td>
+                                    <h4>
+                                        $110,00
+                                    </h4>
+                                </td>
+
+                            </tr>   
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        
+    
+        <div class="col-md-3">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>Cart Summary</h5>
+                </div>
+                <div class="ibox-content">
+                    <span>
+                        Total
+                    </span>
+                    <h2 id='cart_summary' class="font-bold">
+  <!-- appends cost here see js -->                      
+                    </h2>
+
+                    <hr>
+                    <span class="text-muted small">
+                        *For United States, France and Germany applicable sales tax will be applied
+                    </span>
+                    <div class="m-t-sm">
+                        <div class="btn-group">
+                        <a href="#" id='plus'>Choose Another Item</a>
+                        </div>
+                        <div class="btn-group">
+                        <a href="/checkout_form" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Checkout</a>
+                        <a href="#" id='cancel' class="btn btn-white btn-sm"> Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>Support</h5>
+                </div>
+                <div class="ibox-content text-center">
+                    <h3><i class="fa fa-phone"></i> +43 100 783 001</h3>
+                    <span class="small">
+                        Please contact with us if you have any questions. We are avalible 24h.
+                    </span>
+                </div>
+            </div>
+
+            <div class="ibox">
+                <div class="ibox-content">
+
+                    <p class="font-bold">
+                    Other products you may be interested
+                    </p>
+                    <hr>
+                    <div>
+                        <a href="#" class="product-name"> Product 1</a>
+                        <div class="small m-t-xs">
+                            Many desktop publishing packages and web page editors now.
+                        </div>
+                        <div class="m-t text-righ">
+
+                            <a href="#" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <a href="#" class="product-name"> Product 2</a>
+                        <div class="small m-t-xs">
+                            Many desktop publishing packages and web page editors now.
+                        </div>
+                        <div class="m-t text-righ">
+
+                            <a href="#" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+-->
+        </div>
+    </div>
+</div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>
+    var items=JSON.parse(localStorage.getItem('det'))
+    //console.log('items[0]=='+items[0]+' stringify=='+JSON.stringify(items))
+    //var item=items[1]
+    //console.log('item='+item)
+    //var item=JSON.parse(window.localStorage.getItem('det'))
+    //var item2=JSON.parse(window.localStorage.getItem('det0'))
+    
+    //console.log('item=='+item+'    '+JSON.stringify(item))
+    tag=$('table.table.shoping-cart-table tbody')
+    $('table.table.shoping-cart-table tbody').empty()
+    if(items.length==0){
+      window.location.href='/'
+    }
+    var total=0
+    for(var i=0;i<items.length;i++){
+      insertCartHTML(tag, items[i])
+      total=total+items[i].cost
+     }
+     console.log('total=='+total)
+     var cart_summary=$('<h4 />',{class:"font-bold", id:'cart_summary',text:'£'+total}) 
+     $('div.ibox-content h2#cart_summary').append(cart_summary)
+     $('div.ibox-title span.pull-right strong:eq(0)').append(items.length)
+
+$('tbody td.desc div.m-t-sm a.text-muted i.fa.fa-trash').on('click',function(){
+
+var index=$('tbody td.desc div.m-t-sm a.text-muted i.fa.fa-trash').index($(this))
+console.log('in trash    index=='+index)
+console.log('items before=='+JSON.stringify(items))
+items.splice(index,1)
+console.log('items after=='+JSON.stringify(items))
+localStorage.setItem('det',JSON.stringify(items))
+localStorage.setItem('chosen',JSON.stringify(items))
+window.location.href='/cart'
+})
+    //insertCartHTML(tag, items[1])
+$('div.ibox-content div.m-t-sm div.btn-group a#cancel').on('click',function(){
+  console.log('in cancel')
+  items.length=0
+  localStorage.setItem('det',JSON.stringify(items))
+localStorage.setItem('chosen',JSON.stringify(items))
+window.location.href='/'
+
+})
+
+
+    /////////////////////////////////////
+    //// function //////
+function insertCartHTML(tag, item){
+    var tr=$('<tr >/')
+    var imagetd=$('<td />',{width: '90'})
+    var image_div=$('<div />',{class:"cart-product-imitation",
+                    html:'<img src='+item.src+' width=80>'})
+    var td_description=$('<td />',{class:"desc", 
+            html:'<h3><a href="#"></a>'+item.name+'</h3>' })
+    var artist=$('<p />',{class:"small",text:'Artist: '+item.artist})
+    var desc_list=$('<dl />',{class:"small m-b-none", 
+                html:'<dt>Description lists</dt><dd>'
+                +item.media+' '+item.size+'</dd>'})
+    var remove_div=$('<div />',{class:"m-t-sm"})
+    var remove_link=$('<a />',{class:"text-muted",href:'#'})
+    var remove_i=$('<i />',{class:"fa fa-trash",text:'Remove Item'}) 
+    var td_cost=$('<td />',{class:'cost', text: '£'+item.cost})       
+    var td_cost2=$('<td />',{class:'float-right'
+                        ,html:'<h4>£'+parseFloat(item.cost).toFixed(2)+'</h4>'})
+     
+
+$(tag).append(tr,imagetd
+        .append(image_div),td_description
+            .append(artist, desc_list,remove_div
+                .append(remove_link
+                    .append(remove_i))),td_cost,td_cost2)
+
+
+$('a#plus').on('click',function(){
+    console.log('in Another')
+    console.log('item=='+JSON.stringify(items))
+    localStorage["chosen"] = JSON.stringify(items);
+    window.location.href='/'
+    //console.log('urlvars='+getUrlVars())
+})
+
+
+}//insertCartHTML
+
+
+</script>
+</html>

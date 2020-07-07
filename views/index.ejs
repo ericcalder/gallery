@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<%- include('./partials/head'); %>
+<%- include('./partials/header'); %>   
+
+<body>
+
+<h2 id='data1' hidden><%= details %></h2>
+<!-- carousel -->
+
+  <div id="demo" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+  
+  <!-- The slideshow -->
+  
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/images/forthBridge.jpg" alt="Los Angeles" width="1100" height="200">
+    </div>
+    <div class="carousel-item">
+      <img src="/images/duncy.jpg" alt="Chicago" width="1100" height="200">
+    </div>
+    <div class="carousel-item">
+      <img src="https://thumbs.dreamstime.com/b/scottish-highlands-panorama-including-top-peak-ben-nevis-lake-united-kingdom-128333297.jpg" alt="New York" width="1100" height="200">
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+
+
+jumbotron
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>Gallery</h1>
+      <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+
+    </div>
+  </section>
+<div class="popup">
+<%- include('./popups/image_popup'); %>
+</div>
+  <div class="album py-5 bg-light">
+      <div class="row">
+      <!-- images inserted here see js-->
+      
+      </div>
+  	</div>
+  </div>
+  
+</body>
+
+<footer class="text-muted">
+  <div class="container">
+
+    <p class="float-right">
+      <a href="#">Back to top</a>
+    </p>
+  </div>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+	
+
+$(document).ready(function(){
+	console.log('in div.card.mb-4.shadow-sm:eq(1)')
+	//var tag='div.card.mb-4.shadow-sm:eq(1)'
+	var tag='div.row:eq(0)'
+
+	var choices=[]
+	if(localStorage["chosen"]){
+	/////////////////////////////////
+	var x=JSON.parse(localStorage["chosen"])
+	for(var i=0;i<x.length;i++){
+	choices.push(x[i])
+	}
+	//choices.push(localStorage["chosen"])
+}
+	console.log('choices='+choices+'  stringify=='+JSON.stringify(choices))
+	//var tag='col-md-4:eq(0)'
+	for(var i=0;i<getLocals().length;i++){
+	insertHTML(tag,i,choices)
+	//insertHTML(tag,1)
+	}	
+})
+//////////////////////////////////////////////////
+////////////  functions ///////////
+function insertHTML(tag,item,choices){
+	console.log('in insert HTML')
+	
+	///////  get locals ///////////////////////
+	//var locals  = document.getElementById("data1").innerText;
+  	var items=getLocals()
+    console.log('items[0]=='+JSON.stringify(items[0]))
+
+	
+	var divBS=$('<div />',{class:"col-md-4"})
+	var divClass=$('<div />',{class:"card mb-4 shadow-sm"})
+  var link=$('<a />',{href:'#',id:'link'+item})
+	var image=$('<img />', {class:"bd-placeholder-img card-img-top", src:items[item].src})
+	var cardBody=$('<div />',{class:"card-body"})
+	var cardText=$('<p />', {class:"card-text", 
+		html:items[item].name+
+		'<br/>by '+items[item].artist+
+		'<br/>£'+items[item].cost})
+	
+	var btngroup=$('<div />',{class:"btn-group float-right"})
+	var input=$('<input />',{class:"btn btn-sm btn-outline-secondary", id:item,
+				 type:"button", value:"add to cart"})
+	$(tag).append(divBS
+			.append(divClass
+				.append(link
+          .append(image,cardBody
+					 .append(cardText,btngroup
+						.append(input))))))
+
+	$('input.btn.btn-sm.btn-outline-secondary#'+item).on('click',function(){
+	
+	choices.push(items[item])
+  
+	//choices.push(items[1])
+	
+	localStorage["det"] = JSON.stringify(choices);
+	
+	if(choices.length>0){
+	window.location.href='/cart';
+	}
+	})//add to Cart
+
+  $('div.col-md-4 div.card.mb-4.shadow-sm a#link'+item).on('click',function(){
+    console.log('mouse click item='+item)
+   
+   
+    var imageL=$('<img />',{src:items[item].src, width:'100%', height:'100%'})
+    $('div.modal-body').empty()
+                     .append(imageL)
+  
+  $('#imageX').modal('show');
+  })
+  
+}
+
+function getLocals(){
+	var locals  = document.getElementById("data1").innerText;
+  	var items=JSON.parse(locals)
+  	return items
+}
+</script>
+      
+</html>
