@@ -194,7 +194,7 @@ table.shoping-cart-table tr td:last-child {
                         <a href="#" id='plus'>Choose Another Item</a>
                         </div>
                         <div class="btn-group">
-                        <a href="/checkout_form" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Checkout</a>
+                        <a href="/gallery/checkout_form" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Checkout</a>
                         <a href="#" id='cancel' class="btn btn-white btn-sm"> Cancel</a>
                         </div>
                     </div>
@@ -262,7 +262,7 @@ table.shoping-cart-table tr td:last-child {
     tag=$('table.table.shoping-cart-table tbody')
     $('table.table.shoping-cart-table tbody').empty()
     if(items.length==0){
-      window.location.href='/'
+      window.location.href='/gallery'
     }
     var total=0
     for(var i=0;i<items.length;i++){
@@ -283,7 +283,7 @@ items.splice(index,1)
 console.log('items after=='+JSON.stringify(items))
 localStorage.setItem('det',JSON.stringify(items))
 localStorage.setItem('chosen',JSON.stringify(items))
-window.location.href='/cart'
+window.location.href='/gallery/cart'
 })
     //insertCartHTML(tag, items[1])
 $('div.ibox-content div.m-t-sm div.btn-group a#cancel').on('click',function(){
@@ -291,7 +291,7 @@ $('div.ibox-content div.m-t-sm div.btn-group a#cancel').on('click',function(){
   items.length=0
   localStorage.setItem('det',JSON.stringify(items))
 localStorage.setItem('chosen',JSON.stringify(items))
-window.location.href='/'
+window.location.href='/gallery'
 
 })
 
@@ -328,7 +328,7 @@ $('a#plus').on('click',function(){
     console.log('in Another')
     console.log('item=='+JSON.stringify(items))
     localStorage["chosen"] = JSON.stringify(items);
-    window.location.href='/'
+    window.location.href='/gallery'
     //console.log('urlvars='+getUrlVars())
 })
 

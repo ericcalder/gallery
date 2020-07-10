@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var fs = require('fs');
 const mysql=require('mysql');
+var gallery = require('./routes/gallery');
 
 var connection = mysql.createConnection({
         host     : 'localhost',
@@ -30,45 +31,13 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 ///////////////////////////////
 //////////////
-
-const getInfo=(req,res,next)=>{
-	var sql='SELECT * FROM images'
-
-	connection.query(sql, (err,rows) => {
-        if(err) throw err;
-          //console.log('Data saved to payments:\n');
-            console.log('the variable result====',JSON.stringify(rows));
-            req.info=rows
-            next()
-
-    });////connection	
-	
-}
-
-app.get('/',getInfo, function(req,res){
-	console.log('in root');
-	console.log('req.info='+JSON.stringify(req.info))
-	console.log('req.query='+JSON.stringify(req.query))
-res.render('index',{details:JSON.stringify(req.info)});
-//res.send(req.info)
-});
-
-app.get('/cart', function(req,res){
-	console.log('in root cart');
-res.render('shopcart');
-});
-
-app.get('/checkout_form', function(req,res){
-	res.render('checkout')
-})
-
-app.post('/checkout_result',function(req,res){
-	console.log('in checkout')
-	console.log('req.body=='+JSON.stringify(req.body))
-	res.send(req.body)
+app.get('/',function(req,res,next){
+	console.log('in home')
+	res.render('home')
 })
 
 
+app.use('/gallery',gallery);
 
 
 app.listen(3000);
