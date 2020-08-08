@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    
+</head>
+<header>
+    <%- include('./partials/head'); %>
+	<%- include('./partials/header'); %>
+</header>
+<style type="text/css">
+	label {
+  display: inline-block;
+  width: 140px;
+  text-align: right;
+}​
+</style>
+<body>
+	<div class='container'>
+	<h3>Upload File to AWS</h3>
+<form class='form' action="/upload" method="post" enctype="multipart/form-data"><!--/upload-->
+	<div class="block">
+	    <label>Name of work:</label>
+	    <input type="text" name="name" required>
+	</div>
+	<div class="block">
+	    <label>Artist:</label>
+	    <input type="text" name="artist" required>
+	</div>
+	<div class="block">
+	    <label>Media:</label>
+	    <input type="text" name="media" required>
+	</div>
+	<div class="block">
+	    <label>Size:</label>
+	    <input type="text" name="size" required>
+	</div>
+	<div class="block">
+	    <label>Cost:</label>
+	    <input type="number" step=".01" name="cost" required>
+	</div>
+	<input id='fileLoad' type="file" name='image' accept='image/*'>
+	<input type="submit" value="upload">
+</form>
+	</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+ 
+///////////// upload to aws ///////////////////////////////
+/*
+$( document ).ready(function(){
+$('form.form').submit(function(e){
+	e.preventDefault();
+	alert('form submitted')
+	var x = document.getElementById("fileLoad").value;
+	//var img=$('form.form').attr('name').val() 
+	console.log('formData==='+x);
+	
+
+})//submit
+})//doc.ready
+
+
+*/
+</script>

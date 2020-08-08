@@ -3,21 +3,12 @@ var express=require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var fs = require('fs');
-const mysql=require('mysql');
+
 var gallery = require('./routes/gallery');
+var upload = require('./routes/upload');
 
-var connection = mysql.createConnection({
-        host     : 'localhost',
-        user     : 'stairadmin',
-      password: 'ericpass',
-      database: 'artwork',
-      timezone: 'utc'
-    });
+require('dotenv').config()
 
-connection.connect((err) => {
-        if (err) throw err;
-        console.log('Connected!');
-});
 
 var app = express();
 
@@ -38,6 +29,7 @@ app.get('/',function(req,res,next){
 
 
 app.use('/gallery',gallery);
-
+app.use('/upload',upload);
+//app.use('/download',download);
 
 app.listen(3000);

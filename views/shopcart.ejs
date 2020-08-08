@@ -264,13 +264,14 @@ table.shoping-cart-table tr td:last-child {
     if(items.length==0){
       window.location.href='/gallery'
     }
-    var total=0
+    var total=0.00
+    console.log('total in def=='+total+'type==='+typeof total)
     for(var i=0;i<items.length;i++){
       insertCartHTML(tag, items[i])
-      total=total+items[i].cost
+      total=total+parseFloat(items[i].cost)
      }
-     console.log('total=='+total)
-     var cart_summary=$('<h4 />',{class:"font-bold", id:'cart_summary',text:'£'+total}) 
+     //console.log('total=='+total+'   type=='+typeof total)
+     var cart_summary=$('<h4 />',{class:"font-bold", id:'cart_summary',text:'£'+total.toFixed(2)}) 
      $('div.ibox-content h2#cart_summary').append(cart_summary)
      $('div.ibox-title span.pull-right strong:eq(0)').append(items.length)
 
@@ -314,7 +315,7 @@ function insertCartHTML(tag, item){
     var remove_i=$('<i />',{class:"fa fa-trash",text:'Remove Item'}) 
     var td_cost=$('<td />',{class:'cost', text: '£'+item.cost})       
     var td_cost2=$('<td />',{class:'float-right'
-                        ,html:'<h4>£'+parseFloat(item.cost).toFixed(2)+'</h4>'})
+                        ,html:'<h4>£'+item.cost+'</h4'})//parseFloat(item.cost).toFixed(2)+'</h4>'})
      
 
 $(tag).append(tr,imagetd
