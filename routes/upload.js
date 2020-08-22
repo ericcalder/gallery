@@ -21,7 +21,7 @@ singleUpload(req,res,function(err){
    'imageName':req.file.originalname})
 })//singleUpload
 })//post
-
+/*
 const uploadTest=multer({ dest: './public/images/uploads' })
 var cpUpload = uploadTest.fields([{ name: 'myFile', maxCount: 1 }, 
                                 { name: 'artist', maxCount: 1 }])
@@ -44,6 +44,6 @@ router.post('/test', uploadTest.single('myFile'), (req, res, next) => {
     //res.render('test',{file:JSON.stringify(file),title:'test'})
   
 })
-
+*/
 
 module.exports = router;

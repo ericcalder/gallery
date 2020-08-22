@@ -5,48 +5,7 @@ var path = require('path');
 var fs = require('fs');
 
 const download=require('../services/file-download')
-/*
-const mysql=require('mysql');
-var connection = mysql.createConnection({
-        host     : 'localhost',
-        user     : 'stairadmin',
-      password: 'ericpass',
-      database: 'artwork',
-      timezone: 'utc'
-    });
 
-connection.connect((err) => {
-        if (err) throw err;
-        console.log('Connected!');
-});
-
-
-
-
-
-const getInfo=(req,res,next)=>{
-	var sql='SELECT * FROM images'
-
-	connection.query(sql, (err,rows) => {
-        if(err) throw err;
-          //console.log('Data saved to payments:\n');
-            console.log('the variable result====',JSON.stringify(rows));
-            req.info=rows
-            next()
-
-    });////connection	
-	
-}
-
-router.get('/',getInfo, function(req,res){
-	console.log('in root');
-	console.log('req.info='+JSON.stringify(req.info))
-	console.log('req.query='+JSON.stringify(req.query))
-
-res.render('index',{details:JSON.stringify(req.info)});
-//res.send(req.info)
-});
-*/
 router.get('/',download.listObj,download.metaData,function(req,res){
 	console.log('in download'+'req.items=='
 		+JSON.stringify(req.items))
